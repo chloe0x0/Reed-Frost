@@ -1,0 +1,81 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{amsfonts}
+
+\title{The Reed-Frost Model}
+\date{}
+
+\begin{document}
+\maketitle
+The Reed-Frost model was developed in the 1920s to model epidemics. It was originally proposed by Lowell Reed and Wade Hampton Frost of Johns Hopkins University in the 20s but wasnt published until the 50s.
+
+\subsection*{The Deterministic Model}
+
+The population is assumed to be homogenous and is split between 3 compartments
+
+\begin{center}
+    $I_t:=$ the infected individuals at time $t$ \\
+    $S_t:=$ the susceptible individuals at time $t$ \\
+    $R_t:=$ the recovered individuals at time $t$ \\ 
+\end{center}
+
+We define $p \in [0,1]$ to be the probability of transmission during contact between a susceptible and infected individual.
+
+$q = 1 - p$ is defined to be the probability that 2 individuals will \emph{not} have a transmission during contact
+
+therefore the probability that an individual does \emph{not} have contact with infectious individuals at time $t$ is $q^{I_t}$
+
+and so the probability of a Susceptible individual becoming infected at time $t$ is $1 - q^{I_t}$
+
+The deterministic Reed-Frost is governed by the procedure
+
+\begin{equation}
+    I_{t+1} = S_t(1 - q^{I_t})
+\end{equation}
+
+\begin{equation}
+    S_{t+1} = S_t - I_{t+1}
+\end{equation}
+
+\begin{equation}
+    R_{t+1} = R_t + I_{t}
+\end{equation}
+
+There are certain trivial initial conditions that make intuitive sense.
+
+For example, when there are no infected, ie: $I_0 = 0$ we have
+\\
+\begin{center}
+$I_{1} = S_0(1 - q^0) = 0$ \\
+$S_{1} = S_0 - I_1 = S_0$
+\end{center}
+
+When $p = 1$, ie: transmission of the infection is guranteed for every contact,
+\\
+\begin{center}
+$q = 1 - p = 0$ \\
+$I_{1} = S_0(1 - 0^{I_0}) = S_0$ \\
+$S_{1} = S_0 - I_1 = 0$
+\end{center}
+
+after the first timestep there are no more susceptibles, as everyone has been infected.
+\\
+
+When $p = 0$, ie: transmission is impossible
+\\
+\begin{center}
+$q = 1 - p = 1$ \\
+$I_{1} = S_0(1 - 1^{I_0}) = 0$ \\
+$S_{1} = S_0 - I_1 = S_0$
+\end{center}
+
+\subsection*{The Stochastic Model}
+The primary difference between the Stochastic and Deterministic models is that $I_{t+1}$ has a particular probability distribution.
+Treating $I_t$ as a random variable we have \\
+
+\begin{equation}
+    Pr(I_{t+1} = x) = {S_t \choose x} (1-q^{I_t})^x(q^{I_t})^{S_t - x} 
+\end{equation}
+
+$S_{t+1}$ and $R_{t+1}$ are defined in the same way as in the deterministic model
+
+\end{document}

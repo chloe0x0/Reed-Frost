@@ -12,7 +12,7 @@ returns 3 vectors corresponding to the Susceptibles, Infected, and Recovered com
 
 */
 
-std::vector<std::vector<long double>> rfdet(long double S0, long double I0, long double R0, long double p, uint64_t epochs) {
+std::vector<std::vector<long double>> rfdet(long double S0, long double I0, long double R0, float p, uint64_t epochs) {
     // track the compartments over time, each will require epochs many elements and so we ought to pre-alocate them
     std::vector<long double> S, I, R;
     S = std::vector<long double> (epochs, 0.0);
